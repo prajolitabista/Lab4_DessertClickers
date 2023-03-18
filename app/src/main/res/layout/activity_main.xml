@@ -1,78 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
-        android:id="@+id/background_image"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/bakery_back" />
+    <data>
 
-    <ImageButton
-        android:id="@+id/dessert_button"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:background="?android:selectableItemBackground"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toTopOf="@+id/white_background"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/cupcake"/>
+        <variable
+            name="revenue"
+            type="Integer" />
 
-    <!-- Code for white box at the bottom, using ShapeDrawable defined in the drawable folder -->
+        <variable
+            name="amountSold"
+            type="Integer" />
+    </data>
 
-    <View
-        android:id="@+id/white_background"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:background="@drawable/white_box"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/amount_sold_text" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/revenue_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:text='0'
-        android:textColor="@color/black"
-        android:textSize="33sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        <ImageView
+            android:id="@+id/background_image"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/bakery_back"
+            android:contentDescription="TODO"
+            tools:ignore="ContentDescription" />
 
-    <TextView
-        android:id="@+id/dessert_sold_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-medium"
-        android:padding="16dp"
-        android:text="Dessert Sold"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/amount_sold_text"
-        app:layout_constraintStart_toStartOf="parent" />
+        <ImageButton
+            android:id="@+id/dessert_button"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="?android:selectableItemBackground"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toTopOf="@+id/white_background"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription,SpeakableTextPresentCheck"
+            tools:src="@drawable/cupcake" />
 
-    <TextView
-        android:id="@+id/amount_sold_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-medium"
-        android:padding="16dp"
-        android:textColor="@color/black"
-        android:text="0"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/revenue_text"
-        app:layout_constraintEnd_toEndOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- Code for white box at the bottom, using ShapeDrawable defined in the drawable folder -->
+
+        <View
+            android:id="@+id/white_background"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:background="@drawable/white_box"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/amount_sold_text" />
+
+        <TextView
+            android:id="@+id/revenue_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text='@{"$" + revenue.toString()}'
+            android:textColor="#689F38"
+            android:textSize="33sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="$92" />
+
+        <TextView
+            android:id="@+id/dessert_sold_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:padding="16dp"
+            android:text="Desserts Sold"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/amount_sold_text"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/amount_sold_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:padding="16dp"
+            android:text="@{amountSold.toString()}"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/revenue_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="12" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
